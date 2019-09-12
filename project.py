@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+# -*- coding: UTF-8 -*-
 
 from socket import *
 
@@ -7,11 +7,11 @@ from influxdb import InfluxDBClient
 
 client = InfluxDBClient(host='localhost', port=8086)  # 初始化
 
-client.create_database('Shaw_and_Pegy_4+')  # 创建一个名为Shaw_and_Pegy_4+ 存储数据的新数据库
+client.create_database('Zhc_db')  # 创建一个名为Shaw_and_Pegy_4+ 存储数据的新数据库
 
 client.get_list_database()  # 客户端的功能检查数据库是否在那里
 
-client.switch_database('Shaw_and_Pegy_4+')  # 将客户端设置为使用此数据库
+client.switch_database('Zhc_db')  # 将客户端设置为使用此数据库
 
 result = client.query('select * from smart;')
 
@@ -54,14 +54,14 @@ json_body = [
 
     {
 
-        "measurement": "Database1",
+        "measurement": "Temperature",
 
         "tags":
             {
 
-                "user": "大家好我叫智能垃圾桶监测3号",
+                "user": " ",
 
-                "brushId": "TEST—3号机"
+                "brushId": "001"
 
             },
 
@@ -78,10 +78,10 @@ client.write_points(json_body)
 else:
 json_body = [
     {
-        "measurement": "Firebase",
+        "measurement": "Humidity",
         "tags": {
-            "user": "大家好我叫智能垃圾桶监测3号",
-            "brushId": "TEST—3号机"
+            "user": " ",
+            "brushId": "001"
         },
         # "time": "2018-03-28T8:01:00Z",
         "fields": {
