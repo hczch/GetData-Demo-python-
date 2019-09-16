@@ -31,9 +31,9 @@ udpServer.bind(addr)  # 开始监听
 
 while True:
 
-print('Waiting for connection...')
+    print('Waiting for connection...')
 
-data, addr = udpServer.recvfrom(bufsize)  # 接收数据和返回地址
+    data, addr = udpServer.recvfrom(bufsize)  # 接收数据和返回地址
 
 # 处理数据
 # data  = data.decode(encoding='utf-8').upper()
@@ -44,13 +44,13 @@ data, addr = udpServer.recvfrom(bufsize)  # 接收数据和返回地址
 
 # 发送数据
 
-print(data)
+    print(data)
 
-a = float(data)
+    a = float(data)
 
 if a != 0 and a != 1:
 
-json_body = [
+    json_body = [
 
     {
 
@@ -74,9 +74,9 @@ json_body = [
         }
     }
 ]
-client.write_points(json_body)
+    client.write_points(json_body)
 else:
-json_body = [
+    json_body = [
     {
         "measurement": "Humidity",
         "tags": {
@@ -89,6 +89,6 @@ json_body = [
         }
     }
 ]
-client.write_points(json_body)
+    client.write_points(json_body)
 
-udpServer.close()
+    udpServer.close()
