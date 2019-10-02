@@ -42,13 +42,15 @@ while True:
 
 # udpServer.sendto(data.encode(encoding='utf-8'),addr)
 
-# 发送数据
+# 发送数据 print(data)
 
-    print(data)
+    temperature = float(data[0:5])
 
-    a = float(data)
+    humidity = float(data[5:10])
 
-if a != 0 and a != 1:
+    print(temperature)
+
+    print(humidity)
 
     json_body = [
 
@@ -59,7 +61,7 @@ if a != 0 and a != 1:
         "tags":
             {
 
-                "user": " ",
+                "user": "温度",
 
                 "brushId": "001"
 
@@ -69,23 +71,23 @@ if a != 0 and a != 1:
 
         "fields": {
 
-            "DATA": a
+            "DATA": temperature
 
         }
     }
 ]
     client.write_points(json_body)
-else:
+
     json_body = [
     {
         "measurement": "Humidity",
         "tags": {
-            "user": " ",
+            "user": "湿度",
             "brushId": "001"
         },
         # "time": "2018-03-28T8:01:00Z",
         "fields": {
-            "DATA": a
+            "DATA": humidity
         }
     }
 ]
