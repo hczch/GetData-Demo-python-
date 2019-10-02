@@ -44,9 +44,9 @@ while True:
 
 # 发送数据 print(data)
 
-    temperature = float(data[0:5])
+    temperature = float(data[0:4])
 
-    humidity = float(data[5:10])
+    humidity = float(data[5:9])
 
     print(temperature)
 
