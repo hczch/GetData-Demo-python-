@@ -7,7 +7,7 @@ from influxdb import InfluxDBClient
 
 client = InfluxDBClient(host='localhost', port=8086)  # 初始化
 
-client.create_database('Zhc_db')  # 创建一个名为Shaw_and_Pegy_4+ 存储数据的新数据库
+client.create_database('Zhc_db')  
 
 client.get_list_database()  # 客户端的功能检查数据库是否在那里
 
@@ -19,7 +19,7 @@ print("Result: {0}".format(result))
 
 host = ''  # 监听所有的ip
 
-port = 13014  # 接口必须一致
+port = 12000  # 接口必须一致
 
 bufsize = 1024
 
@@ -62,9 +62,9 @@ while True:
         "tags":
             {
 
-                "user": "温度",
+                "user": "温度"
 
-                "brushId": "001"
+              #  "brushId": "001"
 
             },
 
@@ -83,8 +83,8 @@ while True:
     {
         "measurement": "Humidity",
         "tags": {
-            "user": "湿度",
-            "brushId": "001"
+            "user": "湿度"
+           # "brushId": "001"
         },
         # "time": "2018-03-28T8:01:00Z",
         "fields": {
