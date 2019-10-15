@@ -43,22 +43,22 @@ while True:
 # udpServer.sendto(data.encode(encoding='utf-8'),addr)
 
 # 发送数据 
-if not data:
-    break
-else:    
-    print(data)
+    if not data:
+       break
+    else:    
+       print(data)
     
-    temperature = float(data[0:3])
+       temperature = float(data[0:3])
 
-    humidity = float(data[4:7])
+       humidity = float(data[4:7])
 
-    print(temperature)
+       print(temperature)
 
-    print(humidity)
+       print(humidity)
 
-    json_body = [
+       json_body = [
 
-    {
+       {
 
         "measurement": "Temperature",
 
@@ -77,13 +77,13 @@ else:
 
             "DATA": temperature
 
-        }
-    }
-]
-    client.write_points(json_body)
+            }
+       }
+      ]
+       client.write_points(json_body)
 
-    json_body = [
-    {
+       json_body = [
+       {
         "measurement": "Humidity",
         "tags": {
             "user": "湿度"
@@ -93,8 +93,8 @@ else:
         "fields": {
             "DATA": humidity
         }
-    }
-]
-    client.write_points(json_body)
+        }
+        ]
+        client.write_points(json_body)
 
-    udpServer.close()
+        udpServer.close()
