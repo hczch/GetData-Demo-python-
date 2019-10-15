@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+
 # -*- coding: UTF-8 -*-
+
 
 from socket import *
 
@@ -7,7 +9,7 @@ from influxdb import InfluxDBClient
 
 client = InfluxDBClient(host='localhost', port=8086)  # 初始化
 
-client.create_database('Zhc_db')  # 创建一个名为Shaw_and_Pegy_4+ 存储数据的新数据库
+client.create_database('Zhc_db')
 
 client.get_list_database()  # 客户端的功能检查数据库是否在那里
 
@@ -19,7 +21,7 @@ print("Result: {0}".format(result))
 
 host = ''  # 监听所有的ip
 
-port = 13014  # 接口必须一致
+port = 12000  # 接口必须一致
 
 bufsize = 1024
 
@@ -35,62 +37,84 @@ while True:
 
     data, addr = udpServer.recvfrom(bufsize)  # 接收数据和返回地址
 
-# 处理数据
-# data  = data.decode(encoding='utf-8').upper()
+    # 处理数据
 
-# data = "at %s :%s"%(ctime(),data)
+    # data  = data.decode(encoding='utf-8').upper()
 
-# udpServer.sendto(data.encode(encoding='utf-8'),addr)
+    # data = "at %s :%s"%(ctime(),data)
 
-# 发送数据 print(data)
+    # udpServer.sendto(data.encode(encoding='utf-8'),addr)
 
-    temperature = float(data[0:5])
+    # 发送数据
 
-    humidity = float(data[5:10])
+    if data:
 
-    print(temperature)
+        print(data)
 
-    print(humidity)
+        temperature = float(data[0:3])
 
-    json_body = [
+        humidity = float(data[4:7])
 
-    {
+        print(temperature)
 
-        "measurement": "Temperature",
+        print(humidity)
 
-        "tags":
+        json_body = [
+
             {
 
-                "user": "温度",
+                "measurement": "Temperature",
 
-                "brushId": "001"
+                "tags":
 
-            },
+                    {
 
-        # "time": "2018-03-28T8:01:00Z",
+                        "user": "温度"
 
-        "fields": {
+                        #  "brushId": "001"
 
-            "DATA": temperature
+                    },
 
-        }
-    }
-]
-    client.write_points(json_body)
+                # "time": "2018-03-28T8:01:00Z",
 
-    json_body = [
-    {
-        "measurement": "Humidity",
-        "tags": {
-            "user": "湿度",
-            "brushId": "001"
-        },
-        # "time": "2018-03-28T8:01:00Z",
-        "fields": {
-            "DATA": humidity
-        }
-    }
-]
-    client.write_points(json_body)
+                "fields": {
 
-    udpServer.close()
+                    "DATA": temperature
+
+                }
+
+            }
+
+        ]
+
+        client.write_points(json_body)
+
+        json_body = [
+
+            {
+
+                "measurement": "Humidity",
+
+                "tags": {
+
+                    "user": "湿度"
+
+                    # "brushId": "001"
+
+                },
+
+                # "time": "2018-03-28T8:01:00Z",
+
+                "fields": {
+
+                    "DATA": humidity
+
+                }
+
+            }
+
+        ]
+
+        client.write_points(json_body)
+
+        udpServer.close()
