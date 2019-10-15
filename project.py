@@ -9,7 +9,11 @@ from influxdb import InfluxDBClient
 
 client = InfluxDBClient(host='localhost', port=8086)  # 初始化
 
+<<<<<<< HEAD
 client.create_database('Zhc_db')
+=======
+client.create_database('Zhc_db')  
+>>>>>>> e1a75150d269e03b2831e82b09a3fc42df82722f
 
 client.get_list_database()  # 客户端的功能检查数据库是否在那里
 
@@ -45,6 +49,7 @@ while True:
 
     # udpServer.sendto(data.encode(encoding='utf-8'),addr)
 
+<<<<<<< HEAD
     # 发送数据
 
     if data:
@@ -58,11 +63,31 @@ while True:
         print(temperature)
 
         print(humidity)
+=======
+# 发送数据 
+    if not data:
+       break
+    else:    
+       print(data)
+    
+       temperature = float(data[0:3])
+
+       humidity = float(data[4:7])
+
+       print(temperature)
+
+       print(humidity)
+
+       json_body = [
+
+       {
+>>>>>>> e1a75150d269e03b2831e82b09a3fc42df82722f
 
         json_body = [
 
             {
 
+<<<<<<< HEAD
                 "measurement": "Temperature",
 
                 "tags":
@@ -104,6 +129,11 @@ while True:
                 },
 
                 # "time": "2018-03-28T8:01:00Z",
+=======
+                "user": "温度"
+
+              #  "brushId": "001"
+>>>>>>> e1a75150d269e03b2831e82b09a3fc42df82722f
 
                 "fields": {
 
@@ -113,8 +143,32 @@ while True:
 
             }
 
+<<<<<<< HEAD
         ]
 
         client.write_points(json_body)
 
         udpServer.close()
+=======
+            }
+       }
+      ]
+       client.write_points(json_body)
+
+       json_body = [
+       {
+        "measurement": "Humidity",
+        "tags": {
+            "user": "湿度"
+           # "brushId": "001"
+        },
+        # "time": "2018-03-28T8:01:00Z",
+        "fields": {
+            "DATA": humidity
+        }
+        }
+        ]
+        client.write_points(json_body)
+
+        udpServer.close()
+>>>>>>> e1a75150d269e03b2831e82b09a3fc42df82722f
