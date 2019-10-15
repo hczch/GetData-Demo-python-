@@ -43,6 +43,9 @@ while True:
 # udpServer.sendto(data.encode(encoding='utf-8'),addr)
 
 # 发送数据 
+if not data:
+    break
+else    
     print(data)
     
     temperature = float(data[0:3])
