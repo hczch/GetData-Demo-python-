@@ -45,7 +45,7 @@ while True:
 # 发送数据 
 if not data:
     break
-else    
+else:    
     print(data)
     
     temperature = float(data[0:3])
