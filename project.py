@@ -33,9 +33,9 @@ udpServer.bind(addr)  # 开始监听
 while True:
 
     print('Waiting for connection...')
-
+   
     data, addr = udpServer.recvfrom(bufsize)  # 接收数据和返回地址
-
+    print(addr)
     # 处理数据
 
     # data  = data.decode(encoding='utf-8').upper()
