@@ -58,7 +58,7 @@ while True:
 
        print(humidity)
 
-        json_body = [
+       json_body = [
 
             {
 
@@ -86,9 +86,9 @@ while True:
 
         ]
 
-        client.write_points(json_body)
+       client.write_points(json_body)
 
-        json_body = [
+       json_body = [
 
             {
 
@@ -114,6 +114,6 @@ while True:
 
         ]
 
-        client.write_points(json_body)
+       client.write_points(json_body)
 
-        udpServer.close()
+       udpServer.close()
