@@ -46,7 +46,11 @@ while True:
 
     # 发送数据
 
-    if data:
+    if not data:
+
+       continue
+
+    else:
 
        print(data)
     
