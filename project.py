@@ -51,11 +51,11 @@ while True:
     if not data:
 
        continue
-        
+'''        
     elif data.isalpha():
        
        udpServer.sendto(data.encode(encoding='utf-8'),addr)
-        
+'''        
     else:
     
        print(data)
