@@ -54,9 +54,12 @@ while True:
         
     elif data.isalpha():
        
-       udpServer.sendto(data.encode(encoding='utf-8'),addr)
+       udpServer.sendto(data.encode(encoding='utf-8'),addrdata)
         
     else:
+        
+       addrdata=addr   
+    
        print(data)
     
        temperature = float(data[0:3])
