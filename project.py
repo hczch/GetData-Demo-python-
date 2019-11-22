@@ -35,7 +35,9 @@ while True:
     print('Waiting for connection...')
    
     data, addr = udpServer.recvfrom(bufsize)  # 接收数据和返回地址
+    
     print(addr)
+    
     # 处理数据
 
     # data  = data.decode(encoding='utf-8').upper()
@@ -49,9 +51,12 @@ while True:
     if not data:
 
        continue
-
+        
+    elif data.isalpha():
+       
+       udpServer.sendto(data.encode(encoding='utf-8'),addr)
+        
     else:
-
        print(data)
     
        temperature = float(data[0:3])
